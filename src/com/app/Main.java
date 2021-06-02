@@ -1,6 +1,4 @@
-package app.com;
-
-import java.util.*;
+package com.app;
 
 public class Main {
     {

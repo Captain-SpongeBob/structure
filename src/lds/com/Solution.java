@@ -1,5 +1,7 @@
 package lds.com;
 
+import java.util.List;
+
 public class Solution {
     public static void main(String[] args) {
         addBinary("1010","1011");
@@ -26,5 +28,16 @@ public class Solution {
            sb.append(yu == 1 ? yu : Integer.parseInt(String.valueOf(b.charAt(j))) + yu);
         }
         return sb.reverse().toString();
+    }
+    //1773. 统计匹配检索规则的物品数量
+    public int countMatches(List<List<String>> items, String ruleKey, String ruleValue) {
+        int rs = 0;
+        for (List<String> item : items) {
+            if (ruleKey.equals("type") && item.get(0).equals(ruleValue)
+            ||ruleKey.equals("color") && item.get(1).equals(ruleValue)
+            ||ruleKey.equals("name") && item.get(2).equals(ruleValue))
+                rs++;
+        }
+        return rs;
     }
 }

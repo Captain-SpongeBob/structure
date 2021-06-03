@@ -2,10 +2,7 @@ package com.easy;
 
 import org.w3c.dom.ls.LSException;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 public class Solution {
     public static void main(String[] args) {
@@ -20,7 +17,55 @@ public class Solution {
         node3.next = node4;
         node4.next = node5;
         node5.next = node6;
-        isPalindrome(node1);
+        System.out.println(isPalindrome(
+                "a--565a"));
+
+    }
+    //125. 验证回文串
+    public static boolean isPalindrome(String s) {
+        char[] array = s.toUpperCase().toCharArray();
+        int pre = 0, tail = array.length - 1;
+        while (pre < tail) {
+            while (pre < tail && ((array[pre] < 'A' || array[pre] > 'Z') && (array[pre] < '0' || array[pre] > '9'))) {
+                pre++;
+            }
+            while (tail > pre && ((array[tail] < 'A' || array[tail] > 'Z') && (array[tail] < '0' || array[tail] > '9'))) {
+                tail--;
+            }
+            if (array[pre] == array[tail]) {
+                pre++;
+                tail--;
+            } else return false;
+        }
+        return true;
+    }
+    //225. 用队列实现栈
+    class MyStack {
+        private Deque deque = new ArrayDeque<String>();
+        /** Initialize your data structure here. */
+        public MyStack() {
+
+        }
+
+        /** Push element x onto stack. */
+        public void push(int x) {
+            deque.push(x);
+        }
+
+        /** Removes the element on top of the stack and returns that element. */
+        public int pop() {
+            return (int) deque.removeLast();
+        }
+
+        /** Get the top element. */
+        public int top() {
+            return (int) deque.peekFirst();
+        }
+
+        /** Returns whether the stack is empty. */
+        public boolean empty() {
+            return deque.isEmpty();
+        }
     }
     // 面试题 02.06. 回文链表
     public static boolean isPalindrome(ListNode head) {

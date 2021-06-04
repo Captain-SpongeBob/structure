@@ -21,6 +21,59 @@ public class Solution {
                 "a--565a"));
 
     }
+    public int majorityElement(int[] nums) {
+        //摩尔投票找出出现最多的那个数
+        int count = 0, ans = 0;
+        for (int num : nums) {
+            if (count == 0) {
+                ans = num;
+                count = 1;
+            } else if (ans == num) {
+                count++;
+            } else count--;
+        }
+        //出现最多的数不一定满足大于数组一半的要求
+        if (count >= 2){
+            return ans;
+        }else {
+            count = 0;
+            for (int num : nums) {
+                if (num == ans)
+                    count++;
+                else count--;
+            }
+        }
+        return count > 0 ? ans : -1;
+    }
+    //1331. 数组序号转换
+    public int[] arrayRankTransform(int[] arr) {
+        int[] copy = Arrays.copyOf(arr, arr.length);
+        Arrays.sort(copy);
+        HashMap<Integer, Integer> map = new HashMap<>();
+        for (int i = 0,j = 1; i < copy.length; i++) {
+            if (!map.containsKey(copy[i]))
+                map.put(copy[i], j);
+        }
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = map.get(arr[i]);
+        }
+        return arr;
+    }
+    //1544. 整理字符串
+    public String makeGood(String s) {
+        StringBuilder sb = new StringBuilder(s);
+        int len = 0;
+        while (len != sb.length()){
+            len = sb.length();
+            for (int i = 0; i < sb.length() - 1; i++) {
+                if (Math.abs(sb.charAt(i) - sb.charAt(i+1)) == 32){
+                    sb.delete(i,i+2);
+                    break;
+                }
+            }
+        }
+        return sb.toString();
+    }
     //125. 验证回文串
     public static boolean isPalindrome(String s) {
         char[] array = s.toUpperCase().toCharArray();

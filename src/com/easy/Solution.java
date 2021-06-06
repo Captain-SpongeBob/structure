@@ -21,6 +21,14 @@ public class Solution {
                 "a--565a"));
 
     }
+    //112. 路径总和
+    public boolean hasPathSum(TreeNode root, int targetSum) {
+        if (root == null)return false;
+        if (root.left == null && root.right == null)
+            return targetSum - root.val == 0;
+        return hasPathSum(root.left,targetSum - root.val)
+                || hasPathSum(root.right,targetSum - root.val);
+    }
     public int majorityElement(int[] nums) {
         //摩尔投票找出出现最多的那个数
         int count = 0, ans = 0;
@@ -217,5 +225,18 @@ public class Solution {
       int val;
       ListNode next;
       ListNode(int x) { val = x; }
+  }
+
+  public class TreeNode {
+    int val;
+    TreeNode left;
+    TreeNode right;
+    TreeNode() {}
+    TreeNode(int val) { this.val = val; }
+    TreeNode(int val, TreeNode left, TreeNode right) {
+          this.val = val;
+          this.left = left;
+          this.right = right;
+     }
   }
 }

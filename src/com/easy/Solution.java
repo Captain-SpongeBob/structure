@@ -21,6 +21,64 @@ public class Solution {
                 "a--565a"));
 
     }
+    //599. 两个列表的最小索引总和
+    public String[] findRestaurant(String[] list1, String[] list2) {
+        List<String> ans = new ArrayList<>();
+        HashMap<String, Integer> map1 = new HashMap<>();
+        HashMap<String, Integer> map2 = new HashMap<>();
+        for (int i = 0; i < list1.length; i++) {
+            map1.put(list1[i],i);
+        }
+        int min = Integer.MAX_VALUE;
+        for (int i = 0; i < list2.length; i++) {
+            if (map1.containsKey(list2[i])){
+                map2.put(list2[i],map1.get(list2[i]) + i);
+                min = min > map2.get(list2[i]) ?  map2.get(list2[i])  : min;
+            }
+
+        }
+        for (Map.Entry<String, Integer> entry : map2.entrySet()) {
+            if (entry.getValue() == min)ans.add(entry.getKey());
+        }
+        return ans.toArray(new String[ans.size()]);
+    }
+    //1539. 第 k 个缺失的正整数
+    public int findKthPositive(int[] arr, int k) {
+        int curr = 1,ptr = 0,ans = -1;
+        for (; k > 0 ; curr++) {
+            if (curr == arr[ptr])
+                ptr = (ptr + 1) < arr.length ? ptr + 1 : ptr;
+            else {
+                k--;
+                ans = curr;
+            }
+        }
+        return ans;
+    }
+    //703. 数据流中的第 K 大元素
+    class KthLargest {
+        private final PriorityQueue<Integer> queue ;
+        private final int size;
+        public KthLargest(int k, int[] nums) {
+            this.queue = new PriorityQueue<Integer>(k);
+            this.size = k;
+            for (int num : nums) {
+                add(num);
+            }
+        }
+
+        public int add(int val) {
+            if(queue.size() < size) {
+                queue.offer(val);
+
+            }
+            else if(queue.peek() < val) {
+                queue.poll();
+                queue.offer(val);
+            }
+            return queue.peek();
+        }
+    }
     //112. 路径总和
     public boolean hasPathSum(TreeNode root, int targetSum) {
         if (root == null)return false;

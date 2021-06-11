@@ -1,25 +1,58 @@
 package com.easy;
 
-import org.w3c.dom.ls.LSException;
+
 
 import java.util.*;
 
 public class Solution {
     public static void main(String[] args) {
-        ListNode node1 = new ListNode(1);
-        ListNode node2 = new ListNode(2);
-        ListNode node3 = new ListNode(3);
-        ListNode node4 = new ListNode(4);
-        ListNode node5 = new ListNode(3);
-        ListNode node6 = new ListNode(2);
-        node1.next = node2;
-        node2.next = node3;
-        node3.next = node4;
-        node4.next = node5;
-        node5.next = node6;
-        System.out.println(isPalindrome(
-                "a--565a"));
+        TreeNode node1 = new TreeNode(1);
+        TreeNode node2 = new TreeNode(2);
+        TreeNode node3 = new TreeNode(3);
+        TreeNode node4 = new TreeNode(4);
+        TreeNode node5 = new TreeNode(5);
+        node1.left = node2;
+        node1.right = node3;
+        node2.left = node4;
+        node2.right = node5;
+        System.out.println(longestPalindrome(
+                "civilwartestingwhetherthatnaptionoranynartionsoconceivedandsodedicatedcanlongendureWeareqmetonagreatbattlefiemldoftzhatwarWehavecometodedicpateaportionofthatfieldasafinalrestingplaceforthosewhoheregavetheirlivesthatthatnationmightliveItisaltogetherfangandproperthatweshoulddothisButinalargersensewecannotdedicatewecannotconsecratewecannothallowthisgroundThebravelmenlivinganddeadwhostruggledherehaveconsecrateditfaraboveourpoorponwertoaddordetractTgheworldadswfilllittlenotlenorlongrememberwhatwesayherebutitcanneverforgetwhattheydidhereItisforusthelivingrathertobededicatedheretotheulnfinishedworkwhichtheywhofoughtherehavethusfarsonoblyadvancedItisratherforustobeherededicatedtothegreattdafskremainingbeforeusthatfromthesehonoreddeadwetakeincreaseddevotiontothatcauseforwhichtheygavethelastpfullmeasureofdevotionthatweherehighlyresolvethatthesedeadshallnothavediedinvainthatthisnationunsderGodshallhaveanewbirthoffreedomandthatgovernmentofthepeoplebythepeopleforthepeopleshallnotperishfromtheearth"));
 
+    }
+    //278. 第一个错误的版本
+    boolean isBadVersion(int version){
+        return false;
+    }
+    public int firstBadVersion(int n) {
+        int mid = (1 + n ) >> 2;
+        if (isBadVersion(mid)){
+            if (mid - 1 > -1 && isBadVersion(mid - 1) && mid + 1 <= n && isBadVersion(mid + 1))
+
+        }
+    }
+    //409. 最长回文串
+    public static int longestPalindrome(String s) {
+        int[] arr = new int['z' - 'A' + 1];
+        for (char c : s.toCharArray()) {
+            arr[c - 'A']++;
+        }
+        int num = 0;
+        for (int i : arr) {
+            if (i % 2 == 1)num++;
+        }
+        return num == 0 ? s.length() : s.length() - num + 1;
+    }
+    //111. 二叉树的最小深度
+    public static int minDepth(TreeNode root) {
+        if (root == null)return 0;
+        if (root.left != null && root.right != null)
+            return Math.min(minDepth(root.left),minDepth(root.right)) + 1;
+        if (root.left != null)
+            return minDepth(root.left) + 1;
+        if (root.right != null)
+            return minDepth(root.right) + 1;
+
+        return 1;
     }
     //599. 两个列表的最小索引总和
     public String[] findRestaurant(String[] list1, String[] list2) {
@@ -285,7 +318,7 @@ public class Solution {
       ListNode(int x) { val = x; }
   }
 
-  public class TreeNode {
+  public static class TreeNode {
     int val;
     TreeNode left;
     TreeNode right;

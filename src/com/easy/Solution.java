@@ -19,17 +19,8 @@ public class Solution {
                 "civilwartestingwhetherthatnaptionoranynartionsoconceivedandsodedicatedcanlongendureWeareqmetonagreatbattlefiemldoftzhatwarWehavecometodedicpateaportionofthatfieldasafinalrestingplaceforthosewhoheregavetheirlivesthatthatnationmightliveItisaltogetherfangandproperthatweshoulddothisButinalargersensewecannotdedicatewecannotconsecratewecannothallowthisgroundThebravelmenlivinganddeadwhostruggledherehaveconsecrateditfaraboveourpoorponwertoaddordetractTgheworldadswfilllittlenotlenorlongrememberwhatwesayherebutitcanneverforgetwhattheydidhereItisforusthelivingrathertobededicatedheretotheulnfinishedworkwhichtheywhofoughtherehavethusfarsonoblyadvancedItisratherforustobeherededicatedtothegreattdafskremainingbeforeusthatfromthesehonoreddeadwetakeincreaseddevotiontothatcauseforwhichtheygavethelastpfullmeasureofdevotionthatweherehighlyresolvethatthesedeadshallnothavediedinvainthatthisnationunsderGodshallhaveanewbirthoffreedomandthatgovernmentofthepeoplebythepeopleforthepeopleshallnotperishfromtheearth"));
 
     }
-    //278. 第一个错误的版本
-    boolean isBadVersion(int version){
-        return false;
-    }
-    public int firstBadVersion(int n) {
-        int mid = (1 + n ) >> 2;
-        if (isBadVersion(mid)){
-            if (mid - 1 > -1 && isBadVersion(mid - 1) && mid + 1 <= n && isBadVersion(mid + 1))
 
-        }
-    }
+
     //409. 最长回文串
     public static int longestPalindrome(String s) {
         int[] arr = new int['z' - 'A' + 1];

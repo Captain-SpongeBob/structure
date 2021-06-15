@@ -1,5 +1,8 @@
 package com.top100;
 
+import java.util.Arrays;
+import java.util.HashMap;
+
 public class Solution {
     public static void main(String[] args) {
         ListNode node1 = new ListNode(4);
@@ -14,6 +17,47 @@ public class Solution {
 
     public static ListNode sortList(ListNode head) {
        return split(head);
+    }
+    //
+    HashMap<TreeNode,Integer> f = new HashMap<>();
+    HashMap<TreeNode,Integer> g = new HashMap<>();
+    public int rob(TreeNode root) {
+        dfs(root);
+        return Math.max(f.getOrDefault(root, 0), g.getOrDefault(root, 0));
+    }
+    public void dfs(TreeNode root){
+        if (root == null)return;
+        dfs(root.left);
+        dfs(root.right);
+        f.put(root,root.val + g.getOrDefault(root.left,0) + g.getOrDefault(root.right,0));
+        g.put(root,Math.max(f.getOrDefault(root.left,0),g.getOrDefault(root.left,0))
+                +Math.max (f.getOrDefault(root.right,0),g.getOrDefault(root.right,0)));
+    }
+    //312. 戳气球
+    int[][] rec;
+    int[] val;
+    public int maxCoins(int[] nums) {
+        val = new int[nums.length + 2];
+        val[0] = 1;
+        val[nums.length + 1] = 1;
+        for (int i = 1; i < val.length - 1; i++) {
+            val[i] = nums[i - 1];
+        }
+        rec = new int[val.length][val.length];
+        for (int[] ints : rec) {
+            Arrays.fill(ints,-1);
+        }
+        return solve(0,val.length - 1);
+    }
+    public int solve(int left,int right){
+        if (left >= right - 1)return 0;
+        if (rec[left][right] != -1)return rec[left][right];
+        for (int i = left + 1; i < right; i++) {
+            int sum = val[left] * val[i] * val[right];
+            sum += solve(left,i) + solve(i,right);
+            rec[left][right] = Math.max(rec[left][right],sum);
+        }
+        return rec[left][right];
     }
     //148. 排序链表
     public static ListNode split(ListNode head){
@@ -53,8 +97,19 @@ public class Solution {
 
 
 
-
-      public static class ListNode {
+  public class TreeNode {
+      int val;
+      TreeNode left;
+      TreeNode right;
+      TreeNode() {}
+      TreeNode(int val) { this.val = val; }
+      TreeNode(int val, TreeNode left, TreeNode right) {
+          this.val = val;
+          this.left = left;
+          this.right = right;
+      }
+  }
+  public static class ListNode {
       int val;
       ListNode next;
       ListNode() {}

@@ -2,21 +2,53 @@ package com.top100;
 
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
 
 public class Solution {
     public static void main(String[] args) {
-        ListNode node1 = new ListNode(4);
-        ListNode node2 = new ListNode(2);
-        ListNode node3 = new ListNode(1);
-        ListNode node4 = new ListNode(3);
-        node1.next = node2;
-        node2.next = node3;
-        node3.next = node4;
-        sortList(node1);
+//        ListNode node1 = new ListNode(4);
+//        ListNode node2 = new ListNode(2);
+//        ListNode node3 = new ListNode(1);
+//        ListNode node4 = new ListNode(3);
+//        node1.next = node2;
+//        node2.next = node3;
+//        node3.next = node4;
+        numSquares(12);
     }
 
     public static ListNode sortList(ListNode head) {
        return split(head);
+    }
+
+    //279. 完全平方数
+    public static int numSquares(int n) {
+        int[] dp = new int[n + 1];
+        for (int i = 1; i <= n ; i++) {
+            dp[i] = i;
+            for (int j = 1; i - j * j >=0; j++) {
+                dp[i] = Math.min(dp[i],dp[i - j * j] + 1);
+            }
+        }
+        return dp[n];
+    }
+    //139. 单词拆分
+    public boolean wordBreak(String s, List<String> wordDict) {
+        HashSet<String> set = new HashSet<>();
+        boolean[] dp = new boolean[s.length() + 1];
+        dp[0] = true;
+        for (String word : wordDict) {
+            set.add(word);
+        }
+        for (int i = 1; i <= s.length(); i++) {
+            for (int j = 0; j < i; j++) {
+                if(dp[i] = dp[j] && set.contains(s.substring(j,i))){
+                    dp[i] = true;
+                    break;
+                }
+            }
+        }
+        return dp[s.length()];
     }
     //
     HashMap<TreeNode,Integer> f = new HashMap<>();

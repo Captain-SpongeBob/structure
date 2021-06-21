@@ -6,21 +6,30 @@ import java.util.*;
 
 public class Solution {
     public static void main(String[] args) {
-        TreeNode node1 = new TreeNode(1);
-        TreeNode node2 = new TreeNode(2);
-        TreeNode node3 = new TreeNode(3);
-        TreeNode node4 = new TreeNode(4);
-        TreeNode node5 = new TreeNode(5);
-        node1.left = node2;
-        node1.right = node3;
-        node2.left = node4;
-        node2.right = node5;
-        System.out.println(longestPalindrome(
-                "civilwartestingwhetherthatnaptionoranynartionsoconceivedandsodedicatedcanlongendureWeareqmetonagreatbattlefiemldoftzhatwarWehavecometodedicpateaportionofthatfieldasafinalrestingplaceforthosewhoheregavetheirlivesthatthatnationmightliveItisaltogetherfangandproperthatweshoulddothisButinalargersensewecannotdedicatewecannotconsecratewecannothallowthisgroundThebravelmenlivinganddeadwhostruggledherehaveconsecrateditfaraboveourpoorponwertoaddordetractTgheworldadswfilllittlenotlenorlongrememberwhatwesayherebutitcanneverforgetwhattheydidhereItisforusthelivingrathertobededicatedheretotheulnfinishedworkwhichtheywhofoughtherehavethusfarsonoblyadvancedItisratherforustobeherededicatedtothegreattdafskremainingbeforeusthatfromthesehonoreddeadwetakeincreaseddevotiontothatcauseforwhichtheygavethelastpfullmeasureofdevotionthatweherehighlyresolvethatthesedeadshallnothavediedinvainthatthisnationunsderGodshallhaveanewbirthoffreedomandthatgovernmentofthepeoplebythepeopleforthepeopleshallnotperishfromtheearth"));
-
+//        TreeNode node1 = new TreeNode(1);
+//        TreeNode node2 = new TreeNode(2);
+//        TreeNode node3 = new TreeNode(3);
+//        TreeNode node4 = new TreeNode(4);
+//        TreeNode node5 = new TreeNode(5);
+//        node1.left = node2;
+//        node1.right = node3;
+//        node2.left = node4;
+//        node2.right = node5;
+        System.out.println(longestCommonPrefix(new String[]{"flower","flow","flight"}));
     }
 
-
+    //14. 最长公共前缀
+    public static String longestCommonPrefix(String[] strs) {
+        String ans = strs[0];
+        int len = 0;
+        for (int i = 0; i < ans.length(); i++) {
+            for (int j = 1; j < strs.length; j++) {
+                if (i == strs[j].length() || strs[j].charAt(i) != ans.charAt(i))
+                    return ans.substring(0,i);
+            }
+        }
+        return ans.substring(0,len + 1);
+    }
     //409. 最长回文串
     public static int longestPalindrome(String s) {
         int[] arr = new int['z' - 'A' + 1];

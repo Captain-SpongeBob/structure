@@ -1,7 +1,6 @@
 package com.top100;
 
-import java.util.Arrays;
-import java.util.HashMap;
+import java.util.*;
 
 public class Solution {
     public static void main(String[] args) {
@@ -12,9 +11,39 @@ public class Solution {
         node1.next = node2;
         node2.next = node3;
         node3.next = node4;
-        sortList(node1);
+        merge(new int[][]{{1,4},{0,4}});
     }
+    //56. 合并区间
+    public static int[][] merge(int[][] intervals) {
+        if (intervals.length == 0)return intervals;
+        Arrays.sort(intervals, new Comparator<int[]>() {
+            @Override
+            public int compare(int[] o1, int[] o2) {
+                return o1[0] - o2[0];
+            }
+        });
+        ArrayList<int[]> ans = new ArrayList<>();
+        for (int i = 0; i < intervals.length; i++) {
+            int[] l = intervals[i];
+            if (ans.size() == 0 || ans.get(ans.size() - 1)[1] < l[0])
+                ans.add(l);
+            else
+                ans.set(ans.size() - 1,new int[]{ans.get(ans.size() - 1)[0],Math.max(ans.get(ans.size() - 1)[1],l[1])});
+        }
+        return ans.toArray(new int[0][0]);
+    }
+    //437. 路径总和 III
+    private int ans;
+    public int pathSum(TreeNode root, int targetSum) {
+        if (root == null)return 0;
+        if(targetSum == 0)return 1;
 
+        ans += pathSum(root.left,targetSum - root.val);
+        ans += pathSum(root.right,targetSum - root.val);
+        ans += pathSum(root.right,targetSum);
+        ans += pathSum(root.right,targetSum);
+        return ans;
+    }
     public static ListNode sortList(ListNode head) {
        return split(head);
     }
